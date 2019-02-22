@@ -2,9 +2,9 @@
   "name": "@vekktor/redux-helpers",
   "version": "1.0.0",
   "description": "Reduce your Redux boilerplate! 🚀",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,12 @@
     "url": "https://github.com/vekktor/redux-helpers/issues"
   },
   "homepage": "https://github.com/vekktor/redux-helpers#readme",
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "babel-jest": "^24.1.0",
+    "jest": "^24.1.0"
+  },
   "dependencies": {
     "lodash": "^4.17.11"
   }
