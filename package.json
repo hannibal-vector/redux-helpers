@@ -1,0 +1,29 @@
+{
+  "name": "@vekktor/redux-helpers",
+  "version": "1.0.0",
+  "description": "Reduce your Redux boilerplate! 🚀",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vekktor/redux-helpers.git"
+  },
+  "keywords": [
+    "redux",
+    "boilerplate",
+    "helpers",
+    "redux helpers",
+    "redux actions",
+    "redux boilerplate",
+    "redux types",
+    "redux selectors"
+  ],
+  "author": "Ilijan Kotarac",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vekktor/redux-helpers/issues"
+  },
+  "homepage": "https://github.com/vekktor/redux-helpers#readme"
+}
