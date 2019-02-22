@@ -1,2 +1,2 @@
-export { createScope } from './create-scope';
-export { composeSelectors } from './compose-selectors';
+export { default as createScope } from './scope';
+export { composeSelectors } from './selectors';

@@ -1,4 +1,2 @@
-export { createScope, composeSelectors } from './helpers';
-
-import { createScope } from './helpers';
-export default createScope;
+export * from './helpers';
+export { createScope as default } from './helpers';

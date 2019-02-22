@@ -1,4 +1,4 @@
-import createScope from '../create-scope';
+import createScope from '../scope';
 
 describe('createScope', () => {
   test('should return an object', () => {
