@@ -1,2 +1,2 @@
-# redux-helpers
+# @redux-scope/helpers
 Reduce your Redux boilerplate! 🚀
