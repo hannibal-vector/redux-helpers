@@ -1,5 +1,5 @@
 {
-  "name": "@vekktor/redux-helpers",
+  "name": "@redux-scope/helpers",
   "version": "1.0.0",
   "description": "Reduce your Redux boilerplate! 🚀",
   "main": "src/index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vekktor/redux-helpers.git"
+    "url": "git+https://github.com/ikotarac/redux-scope-helpers.git"
   },
   "keywords": [
     "redux",
@@ -23,9 +23,9 @@
   "author": "Ilijan Kotarac",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vekktor/redux-helpers/issues"
+    "url": "https://github.com/ikotarac/redux-scope-helpers/issues"
   },
-  "homepage": "https://github.com/vekktor/redux-helpers#readme",
+  "homepage": "https://github.com/ikotarac/redux-scope-helpers#readme",
   "devDependencies": {
     "@babel/core": "^7.3.3",
     "@babel/preset-env": "^7.3.1",
