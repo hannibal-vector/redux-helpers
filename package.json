@@ -1,5 +1,5 @@
 {
-  "name": "@redux-scope/helpers",
+  "name": "redux-scope-helpers",
   "version": "1.0.0",
   "description": "Reduce your Redux boilerplate! 🚀",
   "main": "src/index.js",
