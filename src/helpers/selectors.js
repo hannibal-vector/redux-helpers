@@ -1,24 +1,40 @@
 import _ from 'lodash';
 
-function resolveSubstateSelector(scopeName, substatePath) {
-  if (_.isFunction(substatePath)) {
-    return substatePath;
+function resolveDefaultState(stateShapeProvider) {
+  if (_.isFunction(stateShapeProvider)) {
+    return stateShapeProvider(undefined, { type: undefined });
   }
 
-  if (_.isString(substatePath)) {
-    return state => state[substatePath];
+  if (_.isObject(stateShapeProvider)) {
+    return stateShapeProvider;
   }
 
-  return state => state[scopeName];
+  throw new Error('Please provide default state or reducer.');
 }
 
-export function createSelectors(scopeName, statePrototype, substatePath) {
-  const substateSelector = resolveSubstateSelector(scopeName, substatePath);
-  return _.mapValues(statePrototype, (__, key) => state =>
-    substateSelector(state)[key],
+function resolveStateSelector(statePath) {
+  if (_.isFunction(statePath)) {
+    return statePath;
+  }
+
+  if (_.isString(statePath)) {
+    return _.property(statePath);
+  }
+
+  throw new Error('Provide path to substate or function extracting substate.');
+}
+
+export function createSelectors(stateShapeProvider, statePath) {
+  const defaultState = resolveDefaultState(stateShapeProvider);
+  const stateSelector = resolveStateSelector(statePath);
+
+  return _.mapValues(defaultState, (defaultValue, key) => state =>
+    stateSelector(state)[key],
   );
 }
 
-export function composeSelectors(selectorsToCompose) {
-  return state => _.mapValues(selectorsToCompose, selector => selector(state));
+export const selectors = createSelectors;
+
+export function combineSelectors(selectorsToCombine) {
+  return state => _.mapValues(selectorsToCombine, selector => selector(state));
 }

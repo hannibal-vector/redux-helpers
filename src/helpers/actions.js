@@ -10,6 +10,7 @@ function createPromisedAction(scopeName, actionFunction, actionName) {
     try {
       const payload = await actionFunction(...args);
       dispatch({ type: type.success, request, payload });
+      return payload;
     } catch (error) {
       dispatch({ type: type.error, request, error });
     }

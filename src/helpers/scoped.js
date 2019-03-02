@@ -3,9 +3,8 @@ import {
   createAction as createActionUnscoped,
   createActions as createActionsUnscoped,
 } from './actions';
-import { createSelectors as createSelectorsUnscoped } from './selectors';
 
-export default function createScope(scopeName) {
+export function scoped(scopeName) {
   function resolveType(actionSubstance) {
     return resolveTypeUnscoped(scopeName, actionSubstance);
   }
@@ -18,19 +17,12 @@ export default function createScope(scopeName) {
     return createActionsUnscoped(scopeName, store);
   }
 
-  function createSelectors(statePrototype, substatePath) {
-    return createSelectorsUnscoped(scopeName, statePrototype, substatePath);
-  }
-
   return {
-    scopeName,
     resolveType,
     createAction,
     createActions,
-    createSelectors,
     type: resolveType,
     action: createAction,
     actions: createActions,
-    selectors: createSelectors,
   };
 }
