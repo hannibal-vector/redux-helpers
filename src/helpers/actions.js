@@ -23,7 +23,7 @@ function createPromisedAction(scopeName, actionFunction, actionName) {
 function createStringAction(scopeName, actionName) {
   const type = createStringActionType(scopeName, actionName);
 
-  const actionCreator = payload => ({ type, payload });
+  const actionCreator = payload => ({ type: type.success, payload });
   actionCreator.type = type;
 
   return actionCreator;

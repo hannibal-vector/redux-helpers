@@ -15,22 +15,46 @@ function resolveActionName(actionFunction, actionName) {
   );
 }
 
+function resolveScopeProvider(scopeName) {
+  if (_.isFunction(scopeName)) {
+    return scopeName;
+  }
+
+  if (_.isString(scopeName)) {
+    return () => scopeName;
+  }
+
+  throw new Error('Scope name must be function or string.');
+}
+
 export function createPromisedActionType(
   scopeName,
   actionFunction,
   actionName,
 ) {
   const resolvedName = resolveActionName(actionFunction, actionName);
+  const scopeProvider = resolveScopeProvider(scopeName);
 
   return {
-    request: `${scopeName}/${resolvedName}/request`,
-    success: `${scopeName}/${resolvedName}/success`,
-    error: `${scopeName}/${resolvedName}/error`,
+    get request() {
+      return `${scopeProvider()}/${resolvedName}/request`;
+    },
+    get success() {
+      return `${scopeProvider()}/${resolvedName}/success`;
+    },
+    get error() {
+      return `${scopeProvider()}/${resolvedName}/error`;
+    },
   };
 }
 
 export function createStringActionType(scopeName, actionName) {
-  return `${scopeName}/${actionName}`;
+  const scopeProvider = resolveScopeProvider(scopeName);
+  return {
+    get success() {
+      return `${scopeProvider()}/${actionName}/success`;
+    },
+  };
 }
 
 export function resolveType(scopeName, actionSubstance) {
