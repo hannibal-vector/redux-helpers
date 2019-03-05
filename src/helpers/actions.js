@@ -22,9 +22,7 @@ function createPromisedAction(scopeName, actionFunction, actionName) {
 
 function createStringAction(scopeName, actionName) {
   const actionCreator = payload => ({
-    get type() {
-      return resolveStringActionType(scopeName, actionName);
-    },
+    type: resolveStringActionType(scopeName, actionName),
     payload,
   });
 
