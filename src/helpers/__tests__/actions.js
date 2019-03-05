@@ -9,14 +9,12 @@ describe('createAction', () => {
 
     test('that has a correct type', () => {
       expect(simpleAction).toHaveProperty('type');
-      expect(simpleAction.type.success).toEqual(
-        'test-scope/simple-action/success',
-      );
+      expect(simpleAction.type).toEqual('test-scope/simple-action');
     });
 
     test('that passes the argument as action payload', () => {
       expect(simpleAction(1)).toEqual({
-        type: 'test-scope/simple-action/success',
+        type: 'test-scope/simple-action',
         payload: 1,
       });
     });
@@ -115,9 +113,7 @@ describe('createAction', () => {
         'simple-action',
       );
       expect(simpleAction).toHaveProperty('type');
-      expect(simpleAction.type.success).toEqual(
-        'provided-scope/simple-action/success',
-      );
+      expect(simpleAction.type).toEqual('provided-scope/simple-action');
     });
 
     test('when creating thunk that completes successfully', async () => {

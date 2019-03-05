@@ -27,7 +27,7 @@ function resolveScopeProvider(scopeName) {
   throw new Error('Scope name must be function or string.');
 }
 
-export function createPromisedActionType(
+export function resolvePromisedActionType(
   scopeName,
   actionFunction,
   actionName,
@@ -48,13 +48,9 @@ export function createPromisedActionType(
   };
 }
 
-export function createStringActionType(scopeName, actionName) {
+export function resolveStringActionType(scopeName, actionName) {
   const scopeProvider = resolveScopeProvider(scopeName);
-  return {
-    get success() {
-      return `${scopeProvider()}/${actionName}/success`;
-    },
-  };
+  return `${scopeProvider()}/${actionName}`;
 }
 
 export function resolveType(scopeName, actionSubstance) {
@@ -63,11 +59,11 @@ export function resolveType(scopeName, actionSubstance) {
   }
 
   if (_.isFunction(actionSubstance)) {
-    return createPromisedActionType(scopeName, actionSubstance);
+    return resolvePromisedActionType(scopeName, actionSubstance);
   }
 
   if (_.isString(actionSubstance)) {
-    return createStringActionType(scopeName, actionSubstance);
+    return resolveStringActionType(scopeName, actionSubstance);
   }
 
   throw new Error('Unsupported action type, please supply function or string.');

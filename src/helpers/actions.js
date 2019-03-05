@@ -1,8 +1,8 @@
 import _ from 'lodash';
-import { createPromisedActionType, createStringActionType } from './types';
+import { resolvePromisedActionType, resolveStringActionType } from './types';
 
 function createPromisedAction(scopeName, actionFunction, actionName) {
-  const type = createPromisedActionType(scopeName, actionFunction, actionName);
+  const type = resolvePromisedActionType(scopeName, actionFunction, actionName);
 
   const actionCreator = (...args) => async dispatch => {
     const request = args;
@@ -21,10 +21,18 @@ function createPromisedAction(scopeName, actionFunction, actionName) {
 }
 
 function createStringAction(scopeName, actionName) {
-  const type = createStringActionType(scopeName, actionName);
+  const actionCreator = payload => ({
+    get type() {
+      return resolveStringActionType(scopeName, actionName);
+    },
+    payload,
+  });
 
-  const actionCreator = payload => ({ type: type.success, payload });
-  actionCreator.type = type;
+  Object.defineProperty(actionCreator, 'type', {
+    get() {
+      return resolveStringActionType(scopeName, actionName);
+    },
+  });
 
   return actionCreator;
 }
