@@ -28,6 +28,10 @@ export function createSelectors(stateShapeProvider, statePath) {
   const defaultState = resolveDefaultState(stateShapeProvider);
   const stateSelector = resolveStateSelector(statePath);
 
+  if (_.isArray(defaultState) || !_.isObject(defaultState)) {
+    return stateSelector;
+  }
+
   return _.mapValues(defaultState, (defaultValue, key) => state =>
     stateSelector(state)[key],
   );

@@ -73,4 +73,61 @@ describe('createSelectors', () => {
     expect(age(other)).toBe(40);
     expect(id(other)).toBe('abc');
   });
+
+  test('for reducer returning a string primitive, should return the whole state', () => {
+    function reducer(state = '', action) {
+      switch (action.type) {
+        case 'add':
+          return state + action.payload;
+        default:
+          return state;
+      }
+    }
+
+    const selector = createSelectors(reducer, state => state.deep);
+
+    const other = {
+      deep: 'bla'
+    };
+
+    expect(selector(other)).toBe('bla');
+  });
+
+  test('for reducer returning a number primitive, should return the whole state', () => {
+    function reducer(state = 0, action) {
+      switch (action.type) {
+        case 'add':
+          return state + action.payload;
+        default:
+          return state;
+      }
+    }
+
+    const selector = createSelectors(reducer, state => state.deep);
+
+    const other = {
+      deep: 5
+    };
+
+    expect(selector(other)).toBe(5);
+  });
+
+  test('for reducer returning an array, should return the whole state', () => {
+    function reducer(state = [], action) {
+      switch (action.type) {
+        case 'add':
+          return [...state, action.payload];
+        default:
+          return state;
+      }
+    }
+
+    const selector = createSelectors(reducer, state => state.deep);
+
+    const other = {
+      deep: [23]
+    };
+
+    expect(selector(other)).toEqual([23]);
+  });
 });
